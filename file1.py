@@ -27,31 +27,32 @@ def background(cvetneba,cvetgor,cvetzemli,cvetklumbi):
     brushColor('white')
     lun = rectangle(-50, 0, 0, 50)
 
+bod = [0]*17
 def body(cvettela,cvetglas):
     global glas1,glas2
-    c.create_oval(50,600,250,700,fill=cvettela,outline=cvettela)
-    c.create_oval(200,520,250,650,fill=cvettela,outline=cvettela)
-    c.create_oval(200,500,280,540,fill=cvettela,outline=cvettela)
-    glas1=c.create_oval(220,505,250,530,fill=cvetglas,outline=cvetglas)
-    glas2=c.create_oval(235,510,245,525,fill='black',outline='black')
-    c.create_oval(225,507,240,515,fill=cvettela,outline=cvettela)
-    c.create_oval(195,475,225,515,fill=cvettela,outline=cvettela)
+    bod[0] = c.create_oval(50,600,250,700,fill=cvettela,outline=cvettela)
+    bod[1] = c.create_oval(200,520,250,650,fill=cvettela,outline=cvettela)
+    bod[2] = c.create_oval(200,500,280,540,fill=cvettela,outline=cvettela)
+    glas1 = c.create_oval(220,505,250,530,fill=cvetglas,outline=cvetglas)
+    glas2 = c.create_oval(235,510,245,525,fill='black',outline='black')
+    bod[3] = c.create_oval(225,507,240,515,fill=cvettela,outline=cvettela)
+    bod[4] = c.create_oval(195,475,225,515,fill=cvettela,outline=cvettela)
 
-    c.create_oval(55,650,85,730,fill=cvettela,outline=cvettela)
-    c.create_oval(55,720,85,780,fill=cvettela,outline=cvettela)
-    c.create_oval(55,775,95,795,fill=cvettela,outline=cvettela)
+    bod[5] = c.create_oval(55,650,85,730,fill=cvettela,outline=cvettela)
+    bod[6] = c.create_oval(55,720,85,780,fill=cvettela,outline=cvettela)
+    bod[7] = c.create_oval(55,775,95,795,fill=cvettela,outline=cvettela)
 
-    c.create_oval(95,660,125,740,fill=cvettela,outline=cvettela)
-    c.create_oval(95,730,125,790,fill=cvettela,outline=cvettela)
-    c.create_oval(95,785,135,805,fill=cvettela,outline=cvettela)
+    bod[8] = c.create_oval(95,660,125,740,fill=cvettela,outline=cvettela)
+    bod[9] = c.create_oval(95,730,125,790,fill=cvettela,outline=cvettela)
+    bod[10] = c.create_oval(95,785,135,805,fill=cvettela,outline=cvettela)
 
-    c.create_oval(190,650,220,730,fill=cvettela,outline=cvettela)
-    c.create_oval(190,720,220,780,fill=cvettela,outline=cvettela)
-    c.create_oval(190,775,230,795,fill=cvettela,outline=cvettela)
+    bod[11] = c.create_oval(190,650,220,730,fill=cvettela,outline=cvettela)
+    bod[12] = c.create_oval(190,720,220,780,fill=cvettela,outline=cvettela)
+    bod[13] = c.create_oval(190,775,230,795,fill=cvettela,outline=cvettela)
 
-    c.create_oval(225,660,255,740,fill=cvettela,outline=cvettela)
-    c.create_oval(225,730,255,790,fill=cvettela,outline=cvettela)
-    c.create_oval(225,785,265,805,fill=cvettela,outline=cvettela)
+    bod[14] = c.create_oval(225,660,255,740,fill=cvettela,outline=cvettela)
+    bod[15] = c.create_oval(225,730,255,790,fill=cvettela,outline=cvettela)
+    bod[16] = c.create_oval(225,785,265,805,fill=cvettela,outline=cvettela)
 
 def klumba():
     global b1,b2,b3,b4,b5,b6,b7
@@ -187,7 +188,7 @@ def solnce():
     ddx+=10
     if ddx>1400:
         ddx=0
-    moveObjectTo(sol,ddx,150)
+    moveObjectTo(sol,ddx,1)
 
     if ddx>700:
         moveObjectTo(lun, 0 + ddx - 700, 150)
@@ -195,15 +196,40 @@ def solnce():
     else:
         changeFillColor(bgrnd, "DarkOrange")
 
+def control(event):
+    if event.keycode == VK_LEFT:
+        for i in range(17):
+            moveObjectBy(bod[i], -5, 0)
+        moveObjectBy(glas1, -5, 0)
+        moveObjectBy(glas2, -5, 0)
+    if event.keycode == VK_RIGHT:
+        for i in range(17):
+            moveObjectBy(bod[i], 5, 0)
+        moveObjectBy(glas1, 5, 0)
+        moveObjectBy(glas2, 5, 0)
+    if event.keycode == VK_UP:
+        for i in range(17):
+            moveObjectBy(bod[i], 0, -5)
+        moveObjectBy(glas1, 0, -5)
+        moveObjectBy(glas2, 0, -5)
+    if event.keycode == VK_DOWN:
+        for i in range(17):
+            moveObjectBy(bod[i], 0, 5)
+        moveObjectBy(glas1, 0, 5)
+        moveObjectBy(glas2, 0, 5)
 
 background('blue', 'gray', 'green', 'DarkGreen')
 body('white', 'purple')
 klumba()
 
 
+
 onTimer(sdvig,100)
 onTimer(morg1,550)
 onTimer(morg2,1000)
-onTimer(solnce,100)
+onTimer(solnce,50)
+
+onKey(control)
+
 
 run()
