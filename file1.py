@@ -27,7 +27,7 @@ def background(cvetneba,cvetgor,cvetzemli,cvetklumbi):
     brushColor('white')
     lun = rectangle(-50, 0, 0, 50)
 
-bod = [0]*17
+bod = [0]*26
 def body(cvettela,cvetglas):
     global glas1,glas2
     bod[0] = c.create_oval(50,600,250,700,fill=cvettela,outline=cvettela)
@@ -54,6 +54,25 @@ def body(cvettela,cvetglas):
     bod[15] = c.create_oval(225,730,255,790,fill=cvettela,outline=cvettela)
     bod[16] = c.create_oval(225,785,265,805,fill=cvettela,outline=cvettela)
 
+    penColor('#FF69B4')
+    brushColor('#FF69B4')
+    bod[17] = polygon([[240,500],[260,445],[265,505]])
+    penColor('#00FFFF')
+    brushColor('#00FFFF')
+    bod[18] = polygon([[245, 483], [260, 445], [263, 484]])
+    penColor('#0000FF')
+    brushColor('#0000FF')
+    bod[19] = polygon([[249, 471], [260, 445], [263, 471]])
+    bod[20] = c.create_oval(90, 420, 180, 650, fill = '#D3D3D3', outline = '#D3D3D3')
+    penColor('#D3D3D3')
+    brushColor('#D3D3D3')
+    bod[21] = polygon([[130,420], [60,470], [80,500], [60,550],[85,560],[70,600],[130,650]])
+    penColor('#696969')
+    brushColor('#696969')
+    bod[22] = polygon([[150,440], [80,470], [100,500]])
+    bod[23] = polygon([[100,500], [80,550],[105,560]])
+    bod[24] = polygon([[105,560],[90,600],[150,620]])
+    bod[25] = polygon([[50,640], [30,690], [40,720], [35,740],[45,770]])
 def klumba():
     global b1,b2,b3,b4,b5,b6,b7
     x = 540
@@ -198,22 +217,22 @@ def solnce():
 
 def control(event):
     if event.keycode == VK_LEFT:
-        for i in range(17):
+        for i in range(26):
             moveObjectBy(bod[i], -5, 0)
         moveObjectBy(glas1, -5, 0)
         moveObjectBy(glas2, -5, 0)
     if event.keycode == VK_RIGHT:
-        for i in range(17):
+        for i in range(26):
             moveObjectBy(bod[i], 5, 0)
         moveObjectBy(glas1, 5, 0)
         moveObjectBy(glas2, 5, 0)
     if event.keycode == VK_UP:
-        for i in range(17):
+        for i in range(26):
             moveObjectBy(bod[i], 0, -5)
         moveObjectBy(glas1, 0, -5)
         moveObjectBy(glas2, 0, -5)
     if event.keycode == VK_DOWN:
-        for i in range(17):
+        for i in range(26):
             moveObjectBy(bod[i], 0, 5)
         moveObjectBy(glas1, 0, 5)
         moveObjectBy(glas2, 0, 5)
